@@ -5,7 +5,7 @@
 ### Description
 
 ### Title
-tour.name = Villa_Trausch
+tour.name = Villa Trausch
 
 ## Skin
 
@@ -186,7 +186,7 @@ Label_22BB32F4_3075_D173_4191_C8B45B85DEB8_mobile.text = Virtual Library
 album_BF482B32_93B1_93F4_41DB_8D737A5D714E.label = Photo Album Book_self_Ortho_modified
 album_BF482B32_93B1_93F4_41DB_8D737A5D714E_0.label = Book_self_Ortho_modified
 map_81A08D1A_92F3_764F_41C2_9E2C435FF2FA.label = Basement
-map_81A0AF7B_92F3_72CD_41E1_7F99C17B3D56.label = Ground_floor
+map_81A0AF7B_92F3_72CD_41E1_7F99C17B3D56.label = Ground Floor
 map_81A15AC8_92F3_73CB_41DF_3DEBA62EF191.label = 2nd_floor
 map_87B8C876_92F3_7EC7_41E0_8648639B4B00.label = 1st_floor
 panorama_9A7790BC_8B57_0B19_41DF_C164CACBCD02.label = image01
