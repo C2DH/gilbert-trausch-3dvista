@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Test as iframe</title>
+  </head>
+  <body>
+    <h1>Test as iframe</h1>
+    <p>Test as iframe</p>
+    <iframe
+      id="test-frame"
+      src="/index.html"
+      style="width: 100vw; height: 100vh"
+    ></iframe>
+    <button id="send-test-data">send test data</button>
+    <script>
+      // listen for messages from the child iframe
+      window.addEventListener('message', function (event) {
+        console.log('[Iframe] Parent received message:', event.data)
+      })
+      document.addEventListener('DOMContentLoaded', function () {
+        document
+          .getElementById('send-test-data')
+          .addEventListener('click', function () {
+            var iframe = document.getElementById('test-frame')
+            iframe.contentWindow.postMessage(
+              {
+                type: 'navigate',
+                route: '',
+                data: 'test data',
+              },
+              '*'
+            )
+          })
+      })
+    </script>
+  </body>
+</html>

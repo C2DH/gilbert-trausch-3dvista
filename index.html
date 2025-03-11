@@ -345,9 +345,12 @@
         return queryDict
       }
 
-      document.addEventListener('DOMContentLoaded', onLoad)
-      function disposeLegacySections() {
-        const divIdsToRemove = ['144', '184', '189']
+      /**
+       * This function remove the legacy sections from the page.
+       *
+       * @param {number[]} numbers - An array of document Ids
+       */
+      function disposeLegacySections(divIdsToRemove = ['144', '184', '189']) {
         divIdsToRemove.forEach((id) => {
           const element = document.getElementById(id)
           if (element) {
@@ -359,6 +362,20 @@
           }
         })
       }
+      document.addEventListener('DOMContentLoaded', onLoad)
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.parent) {
+          window.parent.postMessage({ type: 'DOMContentLoaded' }, '*')
+        }
+      })
+      window.addEventListener('message', function (event) {
+        console.info('[3dvista] Message received from parent:', event.data)
+
+        const { type, route } = event.data
+        if (type === 'navigate') {
+          console.info('[3dvista] Navigating to:', route)
+        }
+      })
     </script>
     <style type="text/css">
       html,
