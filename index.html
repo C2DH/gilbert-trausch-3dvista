@@ -145,6 +145,10 @@
 
         if (tour.player.cookiesEnabled) enableCookies()
         else tour.player.bind('enableCookies', enableCookies)
+        tour.pause()
+        tour.resume = function () {
+          console.log('Resume function overridden to prevent auto-rotation.')
+        }
       }
 
       function onVirtualTourLoaded() {
@@ -374,6 +378,13 @@
         const { type, route } = event.data
         if (type === 'navigate') {
           console.info('[3dvista] Navigating to:', route)
+          if (tour && !isNaN(route)) {
+            try {
+              tour.triggerOverlayByName(setMediaByIndex(route))
+            } catch (error) {
+              console.error('[3dvista] Error navigating:', event, error)
+            }
+          }
         }
       })
     </script>
