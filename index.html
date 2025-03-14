@@ -411,12 +411,14 @@
           fullscreenBtnEl.innerHTML = 'Fullscreen'
         }
       })
-      // add manually translated urls
+      // search & replace in script_general.js the manually translated urls
       // "click":"this.openEmbeddedPDF\(.*?(this\.translate\('[^']*'\))\)
-      // "click":"window.dispatchEvent(new CustomEvent('tourElementClick', {url:$1}))
-      // "click":"window.dispatchEvent(new CustomEvent('tourElementClick', {instance:this});
+      // "click":"window.dispatchEvent(new CustomEvent('tourElementClick', {detail:{url:$1}}))//
       window.addEventListener('tourElementClick', function (e) {
         console.log('@tourElementClick', e.detail.url)
+        if (window.parent) {
+          window.parent.postMessage({ type: 'PDF', url: e.detail.url }, '*')
+        }
       })
     </script>
     <style type="text/css">
