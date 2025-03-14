@@ -411,6 +411,13 @@
           fullscreenBtnEl.innerHTML = 'Fullscreen'
         }
       })
+      // add manually translated urls
+      // "click":"this.openEmbeddedPDF\(.*?(this\.translate\('[^']*'\))\)
+      // "click":"window.dispatchEvent(new CustomEvent('tourElementClick', {url:$1}))
+      // "click":"window.dispatchEvent(new CustomEvent('tourElementClick', {instance:this});
+      window.addEventListener('tourElementClick', function (e) {
+        console.log('@tourElementClick', e.detail.url)
+      })
     </script>
     <style type="text/css">
       html,
