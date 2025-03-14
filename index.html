@@ -366,10 +366,24 @@
           }
         })
       }
+
+      let fullscreenBtnEl = null
       document.addEventListener('DOMContentLoaded', onLoad)
       document.addEventListener('DOMContentLoaded', () => {
         if (window.parent) {
           window.parent.postMessage({ type: 'DOMContentLoaded' }, '*')
+        }
+        // add fullscreen capability to external buttons
+        fullscreenBtnEl = document.getElementById('fullscreen-btn')
+        if (fullscreenBtnEl) {
+          fullscreenBtnEl.innerHTML = 'Fullscreen'
+          fullscreenBtnEl.addEventListener('click', () => {
+            if (document.fullscreenElement) {
+              document.exitFullscreen()
+            } else {
+              document.body.requestFullscreen()
+            }
+          })
         }
       })
       window.addEventListener('message', function (event) {
@@ -385,6 +399,16 @@
               console.error('[3dvista] Error navigating:', event, error)
             }
           }
+        }
+      })
+
+      document.addEventListener('fullscreenchange', function () {
+        if (document.fullscreenElement) {
+          console.log('Entered Fullscreen')
+          fullscreenBtnEl.innerHTML = 'Exit Fullscreen'
+        } else {
+          console.log('Exited Fullscreen')
+          fullscreenBtnEl.innerHTML = 'Fullscreen'
         }
       })
     </script>
@@ -426,6 +450,25 @@
         -webkit-transition: opacity 0.5s;
         -moz-transition: opacity 0.5s;
         -o-transition: opacity 0.5s;
+      }
+      #fullscreen-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        z-index: 999;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        cursor: pointer;
+        font-family: sans-serif;
+        border-radius: 40px;
+        border: none;
+        line-height: 40px;
+        padding: 0 20px;
+        transition: background-color 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      #fullscreen-btn:hover {
+        background-color: blue;
       }
     </style>
     <link rel="stylesheet" href="fonts.css?v=1631729501794" />
@@ -471,5 +514,6 @@
       </div>
     </div>
     <div id="viewer" class="fill-viewport"></div>
+    <button id="fullscreen-btn"></button>
   </body>
 </html>
