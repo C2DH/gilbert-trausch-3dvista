@@ -158,6 +158,17 @@ h1 {
     font-size: 12px;
   }
 }
+
+#\32 89 {
+    display:none !important;
+}
+
+#\32 86 {
+    display:none !important;
+}
+#\32 88 {
+    display:none !important;
+}
 </style>
 END
 

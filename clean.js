@@ -1,4 +1,9 @@
-const ElementIdsToRemove = ['228', '110']
+const MenuId = '247'
+const LogoId = '71'
+const MenuBtnId = '249'
+const MenuSoundBtnId = '289'
+// # Elements are added to the DOM dinamically, so we need to wait for them to be available
+const ElementIdsToRemove = [MenuId, LogoId]
 
 function isMobile() {
   if (/Mobile\/\w+/.test(navigator.userAgent)) {
@@ -56,6 +61,12 @@ function removeLoadingScreen() {
   }
 }
 
+function addButtonBackground() {
+  const menuBtn = document.getElementById(MenuBtnId)
+  menuBtn.style.backgroundColor = '#4100FC'
+  menuBtn.style.borderRadius = '100px'
+}
+
 function removeElements(idsToRemove) {
   const elementsToRemove = idsToRemove
     .map((id) => document.getElementById(id))
@@ -76,14 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!isMobile()) {
     console.log('[3dvista:clean] desktop detected, nothing to remove')
     removeLoadingScreen()
+    addButtonBackground
     return
   }
   removeElementsInterval = setInterval(() => {
-    const isElementAvailable = document.getElementById(ElementIdsToRemove[0])
-    if (isElementAvailable) {
+    const firstElementAvailable = document.getElementById(ElementIdsToRemove[0])
+    if (firstElementAvailable) {
       console.log('[3dvista:clean] element available, let"s remove it')
 
       removeElements(ElementIdsToRemove)
+      addButtonBackground()
       removeLoadingScreen()
       clearInterval(removeElementsInterval)
       return
