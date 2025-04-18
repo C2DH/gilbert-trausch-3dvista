@@ -162,7 +162,7 @@ h1 {
 END
 
 # Define custom script
-CUSTOM_SCRIPT='<script src="init.js"></script>'
+CUSTOM_SCRIPT='<script src="clean.js"></script><script src="init.js"></script>'
 
 # Inject Google Fonts and custom style before </head>
 # Inject custom script before </body>
