@@ -104,19 +104,23 @@ window.addEventListener('message', function (event) {
   }
 })
 
-window.parent.addEventListener('fullscreenchange', function () {
-  console.log('Fullscreen change detected')
-  const label = document.getElementById('fullscreen-btn-label')
-  if (isInIframe && window.parent.document.fullscreenElement && label) {
-    label.innerHTML = 'Exit Fullscreen'
-  } else if (isInIframe && label) {
-    label.innerHTML = 'Fullscreen'
-  } else if (document.fullscreenElement && label) {
-    label.innerHTML = 'Exit Fullscreen'
-  } else if (label) {
-    label.innerHTML = 'Fullscreen'
-  }
-})
+try {
+  window.parent.addEventListener('fullscreenchange', function () {
+    console.log('Fullscreen change detected')
+    const label = document.getElementById('fullscreen-btn-label')
+    if (isInIframe && window.parent.document.fullscreenElement && label) {
+      label.innerHTML = 'Exit Fullscreen'
+    } else if (isInIframe && label) {
+      label.innerHTML = 'Fullscreen'
+    } else if (document.fullscreenElement && label) {
+      label.innerHTML = 'Exit Fullscreen'
+    } else if (label) {
+      label.innerHTML = 'Fullscreen'
+    }
+  })
+} catch (error) {
+  console.warn('[3dvista] Error adding fullscreen change listener:', error)
+}
 // search & replace in script_general.js the manually translated urls
 // "click":"this.openEmbeddedPDF\(.*?(this\.translate\('[^']*'\))\)
 // "click":"window.dispatchEvent(new CustomEvent('tourElementClick', {detail:{url:$1}}))//
