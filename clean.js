@@ -1,5 +1,5 @@
 const MenuId = '247'
-const LogoId = '71'
+const LogoId = '74'
 const MenuBtnId = '249'
 const MenuSoundBtnId = '289'
 // # Elements are added to the DOM dinamically, so we need to wait for them to be available
