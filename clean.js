@@ -1,4 +1,4 @@
-const ElementIdsToRemove = ['228', '110', '297']
+const ElementIdsToRemove = ['228', '110']
 
 function isMobile() {
   if (/Mobile\/\w+/.test(navigator.userAgent)) {
