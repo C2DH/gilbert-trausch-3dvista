@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!isMobile()) {
     console.log('[3dvista:clean] desktop detected, nothing to remove')
     removeLoadingScreen()
-    addButtonBackground
+    addButtonBackground()
     return
   }
   removeElementsInterval = setInterval(() => {
