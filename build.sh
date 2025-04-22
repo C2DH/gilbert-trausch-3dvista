@@ -159,14 +159,16 @@ h1 {
   }
 }
 
-#\32 89 {
+#\31 44 {
     display:none !important;
 }
 
-#\32 86 {
+
+#\32 66 {
     display:none !important;
 }
-#\32 88 {
+/* fullscreen btn in menu */
+#\32 24{
     display:none !important;
 }
 </style>

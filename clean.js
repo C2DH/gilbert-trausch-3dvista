@@ -1,9 +1,26 @@
-const MenuId = '247'
-const LogoId = '74'
-const MenuBtnId = '249'
-const MenuSoundBtnId = '289'
+const MenuId = '137'
+const LogoId = '261'
+const MenuBtnId = '116'
+const MenuSoundBtnId = '144'
 // # Elements are added to the DOM dinamically, so we need to wait for them to be available
 const ElementIdsToRemove = [MenuId, LogoId]
+
+// to remove other menu element, as they're injected later in the page,
+// it's better to remove them by class name using a CSS trick (as ccs classes cannot start with numbers...)
+// check build.sh, at the end of the added style:
+//#\31 44 {
+//   display:none !important;
+// }
+
+// #\36 2 {
+//     display:none !important;
+// }
+// #\32 66 {
+//     display:none !important;
+// }
+// #\32 24{
+//     display:none !important;
+// }
 
 function isMobile() {
   if (/Mobile\/\w+/.test(navigator.userAgent)) {
@@ -63,6 +80,10 @@ function removeLoadingScreen() {
 
 function addButtonBackground() {
   const menuBtn = document.getElementById(MenuBtnId)
+  if (!menuBtn) {
+    console.log('[3dvista:clean] menu button not found, check id', MenuBtnId)
+    return
+  }
   menuBtn.style.backgroundColor = '#4100FC'
   menuBtn.style.borderRadius = '100px'
 }
