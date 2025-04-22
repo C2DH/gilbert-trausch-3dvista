@@ -26,10 +26,38 @@ function isMobile() {
   if (/Mobile\/\w+/.test(navigator.userAgent)) {
     return true
   }
+  if (isIPad()) {
+    return true
+  }
   return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   )
 }
+
+function isIPad() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera
+
+  // Classic iPad detection
+  const iPadUA = /iPad/.test(ua)
+
+  // Newer iPadOS 13+ detection: identifies as Mac but has touch support
+  const iPadOS13Plus =
+    ua.includes('Macintosh') &&
+    'ontouchstart' in window &&
+    navigator.maxTouchPoints > 1
+
+  return iPadUA || iPadOS13Plus
+}
+
+console.info(
+  '[3dvista:clean] \n - isMobile:',
+  isMobile(),
+  '\n - isIPad:',
+  isIPad(),
+  '\n userAgent',
+  navigator.userAgent,
+  window.innerWidth
+)
 
 // add fixed cover for laoading screen
 const loadingScreen = document.createElement('div')
@@ -104,7 +132,11 @@ function removeElements(idsToRemove) {
 
 let removeElementsInterval = null
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('[3dvista:clean] clean.js loaded.')
+  console.log(
+    '[3dvista:clean] clean.js loaded!!!!!',
+    'UserAgent:',
+    navigator.userAgent
+  )
   if (!isMobile()) {
     console.log('[3dvista:clean] desktop detected, nothing to remove')
     removeLoadingScreen()
